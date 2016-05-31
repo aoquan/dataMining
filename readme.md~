@@ -1,0 +1,4 @@
+##install pip
+apt-get install python -pip
+## then install plotly
+pip install plotly
