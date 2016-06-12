@@ -24,34 +24,33 @@ def getFrequency(array1,array2):
 	for i in range(0,length):
 		print array1[i],'	',array2[i]
 
-# def plotHistogram(array,picName):
-# 	xData = np.arange(len(array))
-# 	fig = plt.figure()
-# 	figure = plt.gcf() # get current figure
-# 	#figure.set_size_inches(19, 20)
-# 	ax1 = fig.add_subplot(111)
-# 	ax1.plot(xData, array,'r',label="frequency")
-# 	# ax1.plot(xData, array,'b.')
-# 	ax1.set_ylabel('frequency')
-# 	ax1.set_xlabel('start_time')
-# 	plt.savefig(picName)
+def plotHistogram(array,picName):
+	xData = np.arange(len(array))
+	fig = plt.figure()
+	figure = plt.gcf() # get current figure
+	#figure.set_size_inches(19, 20)
+	ax1 = fig.add_subplot(111)
+	ax1.plot(xData, array,'r',label="frequency")
+	# ax1.plot(xData, array,'b.')
+	ax1.set_ylabel('frequency')
+	ax1.set_xlabel('start_time')
+	plt.savefig(picName)
 
-# def hist(array):
-# 	length = len(array)
-# 	maxValue = max(array)
-# 	minValue = min(array)
-# 	dis = maxValue - minValue
-# 	bins = 20
-# 	interval = dis/bins
-# 	result = [0]*bins
-# 	for i in range(0,length):
-# 		pos = int((array[i]-minValue)/(dis/bins))
-# 		if (pos == bins):
-# 			pos = bins - 1
-# 		result[pos] += 1
-# 	return result
+def hist(array):
+	length = len(array)
+	maxValue = max(array)
+	minValue = min(array)
+	dis = maxValue - minValue
+	bins = 20
+	interval = dis/bins
+	result = [0]*bins
+	for i in range(0,length):
+		pos = int((array[i]-minValue)/(dis/bins))
+		if (pos == bins):
+			pos = bins - 1
+		result[pos] += 1
+	return result
 
-# def NormalData(data):
 
 
 
@@ -71,8 +70,6 @@ def FillMissValueByFrequency(array):
 
 	return array
 
-# def FillMissValueBySimilar(data):
-# 	for line in data:
 
 
 
@@ -163,13 +160,13 @@ for line in lines:
 
 
 
-# getFrequency(season,seasonCount)
-# getFrequency(riverSize,riverSizeCount)
-# getFrequency(riverSpeed,riverSpeedCount)
+getFrequency(season,seasonCount)
+getFrequency(riverSize,riverSizeCount)
+getFrequency(riverSpeed,riverSpeedCount)
 
 
-# dataCp = data
-# DataVisual('Ori')
+dataCp = data
+DataVisual('Ori')
 
 
 for  i in range(3,18):
@@ -184,75 +181,77 @@ fp.close()
 
 
 
-# DataVisual(data,'Fre')
+DataVisual(data,'Fre')
 
 
-# ConditionBoxPlt(season,len(data[0]),'season',0)
-# ConditionBoxPlt(riverSize,len(data[0]),'riverSize',1)
-# ConditionBoxPlt(riverSpeed,len(data[0]),'riverSpeed',2)
-
-
-
-
-# dataDirty = [[] for i in range(18-3)]
-# dataClean = [[] for i in range(18-3)]
-# for i in range(0,len(data[0])):
-# 	flag =0
-# 	for j in range(3,18):
-# 		if('X' in data[j][i]):
-# 			flag =1
-# 			dataDirty[j-3].append(data[j][i])
-# 			break
-# 	if (flag == 1):
-# 		continue
-# 	for j in range(3,18):
-# 		dataClean[j-3].append(data[j][i])
-
-# for j in range(3-3,18-3):
-# 	dataClean[j] = [float(k) for k in dataClean[j]]
+ConditionBoxPlt(season,len(data[0]),'season',0)
+ConditionBoxPlt(riverSize,len(data[0]),'riverSize',1)
+ConditionBoxPlt(riverSpeed,len(data[0]),'riverSpeed',2)
 
 
 
 
+dataDirty = [[] for i in range(18-3)]
+dataClean = [[] for i in range(18-3)]
+for i in range(0,len(data[0])):
+	flag =0
+	for j in range(3,18):
+		if('X' in data[j][i]):
+			flag =1
+			dataDirty[j-3].append(data[j][i])
+			break
+	if (flag == 1):
+		continue
+	for j in range(3,18):
+		dataClean[j-3].append(data[j][i])
+
+for j in range(3-3,18-3):
+	dataClean[j] = [float(k) for k in dataClean[j]]
 
 
-# npMatrix = np.array(dataClean)
 
-# cov = np.cov(npMatrix)
-# peakIndex = np.argmax(cov)
-# print cov
-# print peakIndex
 
-############################################
-# dataCleanBk = dataClean
-# for j in range(3-3,18-3):
-# 	maxj = max(dataClean[j])
-# 	minj=  min(dataClean[j])
-# 	for  i in range(0,len(dataClean[0])):
-# 		dataClean[j][i] = (dataClean[j][i]-minj)/(maxj-minj)
 
-# 	for i in range(0,len(dataDirty[0])):
-# 		print i,j
-# 		if ('X' not in dataDirty[j][i]):
-# 			dataDirty[j][i] = (dataDirty[j][i]-minj)/(maxj-minj)
 
-# pos = 0
-# maxV = 0 
-# maxP =0
-# # print dataDirty[j]
-# for i in range(0,len(dataClean[0])):
-# 	maxV = 0 
-# 	for j in range(3,18):
-# 		if ('X' not in dataDirty[j][0]):
-# 			maxV += dataClean[j][i]*dataDirty[j][0]
+npMatrix = np.array(dataClean)
 
-# 	if (maxP < maxV):
-# 		maxP = maxV
-# 		pos = i
+cov = np.cov(npMatrix)
+peakIndex = np.argmax(cov)
+print cov
+print peakIndex
 
-# print maxP,i
 
-# print dataClean
+
+###########################################
+dataCleanBk = dataClean
+for j in range(3-3,18-3):
+	maxj = max(dataClean[j])
+	minj=  min(dataClean[j])
+	for  i in range(0,len(dataClean[0])):
+		dataClean[j][i] = (dataClean[j][i]-minj)/(maxj-minj)
+
+	for i in range(0,len(dataDirty[0])):
+		print i,j
+		if ('X' not in dataDirty[j][i]):
+			dataDirty[j][i] = (dataDirty[j][i]-minj)/(maxj-minj)
+
+pos = 0
+maxV = 0 
+maxP =0
+# print dataDirty[j]
+for i in range(0,len(dataClean[0])):
+	maxV = 0 
+	for j in range(3,18):
+		if ('X' not in dataDirty[j][0]):
+			maxV += dataClean[j][i]*dataDirty[j][0]
+
+	if (maxP < maxV):
+		maxP = maxV
+		pos = i
+
+print maxP,i
+
+print dataClean
 
 
 
