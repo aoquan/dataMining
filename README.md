@@ -17,7 +17,8 @@ Frehist.svg 为频率直方图
 条件盒图的命名方式为：属性_条件_Conbox.svg
 
 ### 实验报告
-实验报告.odt
+实验报告.odt(无法打开则看pdf版)
+实验报告.pdf
 
 ### 输入数据
 Analysis.txt
